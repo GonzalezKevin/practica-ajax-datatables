@@ -1,0 +1,11 @@
+td .btn-primary{
+	margin-right: 3px;
+}
+
+body {
+	padding-top: 30px;
+}
+
+#formulario{
+	display: none;
+}
