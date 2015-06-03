@@ -1,5 +1,6 @@
 <?php
- 
+ header('content-type: application/json; charset=utf-8');
+header('Access-Control-Allow-Origin: *');
 /*
  * DataTables example server-side processing script.
  *
@@ -42,9 +43,9 @@ $columns = array(
  
 // SQL server connection information
 $sql_details = array(
-    'user' => 'root',
-    'pass' => 'root',
-    'db'   => 'datatables',
+    'user' => 'kgonzalez_root',
+    'pass' => '526db936',
+    'db'   => 'kgonzalez_datatable',
     'host' => 'localhost'
 );
  

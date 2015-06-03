@@ -17,10 +17,8 @@
              {'data': 'idTarifa'}, 
              {'data': 'nombreTarifa'}, 
              {'data': 'idClinica',
-             /*añadimos las clases editarbtn y borrarbtn para procesar los eventos click de los botones. No lo hacemos mediante id ya que habrá más de un
-               botón de edición o borrado*/
                'render': function(data) {
-                   return '<a class="btn btn-primary editarbtn" href=http://localhost/php/editar.php?id_clinica=' + data + '>Editar</a><a class="btn btn-warning borrarbtn" href=http://localhost/php/borrar.php?id_clinica=' + data + '>Borrar</a>';
+                   return '<a class="btn btn-primary editarbtn" href=http://localhost/php/editar.php?id_clinica=' + data + '>Editar <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a><a class="btn btn-warning borrarbtn" href=http://localhost/php/borrar.php?id_clinica=' + data + '>Borrar  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>';
                }
            }],
            'language': {
@@ -98,36 +96,36 @@
       url: 'http://www.futbolistas.com/listar_tarifas.php',
       type: 'GET',
       dataType: 'json',
-      data: {param1: 'value1'},
-      async: false,
-               error: function(xhr, status, error) {
-               },
-               success: function(data) {
+      })
+               .done(function(data) {
                    $('#id_tarifa').empty();
                    $.each(data, function() {
                        $('#id_tarifa').append(
                            $('<option></option>').val(this.id_tarifa).html(this.nombre)
                        );
                    });
-               }
-           });
+               })
+               .fail(function() {
+                   console.log("Ha habido un error al obtener las tarifas");
+               });
        }
-    
+    cargarTarifas();
+
     $('#enviar').click(function(e) {
            e.preventDefault();
-           idClinica = $('#idClinica').val();
-           nombre = $('#nombre').val();
-           localidad = $('#localidad').val();
-           provincia = $('#provincia option:selecter').text();
-           direccion = $('#direccion').val();
-           cif = $('#cif').val();
-           cp = $('#cp').val();
-           id_tarifa = $('#idTarifa').val();
+          var idClinica = $('#idClinica').val();
+          var nombre = $('#nombre').val();
+          var localidad = $('#localidad').val();
+          var provincia = $('#provincia option:selected').text();
+          var direccion = $('#direccion').val();
+          var cif = $('#cif').val();
+          var cp = $('#cp').val();
+          var id_tarifa = $('#id_tarifa').val();
 
            $.ajax({
                type: 'POST',
                dataType: 'json',
-               url: 'php/modificar_clinica.php',
+               url: 'http://www.futbolistas.com/modificar_clinica.php',
                data: {
                    id_clinica: idClinica,
                    nombre: nombre,
@@ -152,7 +150,7 @@
                    $('#tabla').fadeIn(100);
                    $('#formulario').fadeOut(100);
                });
-
+               
            $('#miTabla').fadeIn(100);
            $('#formulario').fadeOut(100);
 

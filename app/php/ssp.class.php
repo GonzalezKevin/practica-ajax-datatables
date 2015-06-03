@@ -1,5 +1,6 @@
 <?php
-
+header('content-type: application/json; charset=utf-8');
+header('Access-Control-Allow-Origin: *');
 /*
  * Helper functions for building a DataTables server-side processing SQL query
  *
