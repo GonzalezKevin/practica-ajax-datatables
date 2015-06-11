@@ -66,6 +66,26 @@
            $('#cp').val(aData.cp);
        });
 
+   $('#miTabla').on('click', '.nuevobtn', function(e) {
+           e.preventDefault();
+           $('#miTabla').fadeOut(100);
+           $('#formulario').fadeIn(100);
+
+           var nRow = $(this).parents('tr')[0];
+           var aData = miTabla.row(nRow).data();
+           $('#idClinica').val(aData.idClinica);
+           $('#nombre').val(aData.nombre);
+           $('#numClinica').val(aData.numClinica);
+           $('#razonSocial').val(aData.razonSocial);
+           $('#cif').val(aData.cif);
+           $('#localidad').val(aData.localidad);
+           $('#provincia option').filter(function() {
+               return this.text.toLowerCase() === aData.provincia.toLowerCase();
+           }).attr('selected', true);
+           $('#direccion').val(aData.direccion);
+           $('#cp').val(aData.cp);
+       });
+
    $('#miTabla').on('click', '.borrarbtn', function(e) {
            e.preventDefault();
            var nRow = $(this).parents('tr')[0];
